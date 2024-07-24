@@ -1,0 +1,134 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dashboard Admin</title>
+  <!-- Linking Google Font Link For Icons -->
+  <link rel="stylesheet"href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
+    <link rel="stylesheet" href="{% static 'css/dashboardadmin.css' %}" />
+
+</head>
+<body>
+    <aside class="sidebar">
+    <div class="sidebar-header">
+        <img src="{% static 'images/logo 2 1.png' %}" alt="logo" />
+        <h2>Sexedu</h2>
+    </div>
+    <ul class="sidebar-links">
+        <h4>
+        <span>Main Menu</span>
+        <div class="menu-separator"></div>
+        </h4>
+        <li>
+        <a href="{% url 'dashboardadmin' %}">
+        <span class="material-symbols-outlined"> dashboard </span>Dashboard</a>
+        </li>
+        <li>
+        <a href="{% url 'admincourse' %}"><span class="material-symbols-outlined">edit_square</span>Kelola Course</a>
+        </li>
+        <h4>
+        <span>Account</span>
+        <div class="menu-separator"></div>
+        </h4>
+        <li>
+        <a href="{% url 'sexeduapp:profile' %}"><span class="material-symbols-outlined"> account_circle </span>Profile</a>
+        </li>
+        <li>
+        <a href="{% url 'sexeduapp:index' %}"><span class="material-symbols-outlined"> logout </span>Back</a>
+        </li>
+    </ul>
+    <div class="user-account">
+        <div class="user-profile">
+        {% if user.profile.image %}
+        <img src="{{ user.profile.image.url }}" alt="Profile Image" >
+        {% else %}
+        <img src="{% static 'images/user1.png' %}" alt="Profile Image">
+        {% endif %}
+        <div class="user-detail">
+          <h3>{{ user.username }}</h3>
+          {% if user.is_superuser %}
+                    Admin
+                {% else %}
+                    Student
+                {% endif %}
+        </div>
+      </div>
+    </div>
+</aside>
+
+    <div class="dash-content">
+        <div class="overview">
+            <div class="title">
+                <i class="uil uil-tachometer-fast-alt"></i>
+                <span class="text">Dashboard</span>
+        </div>
+        <div class="boxes">
+            <div class="box box1">
+                <i class="material-symbols-outlined">Groups</i>
+                <span class="text">Total Students</span>
+                <span class="number">{{ total_users }}</span>
+            </div>
+            <div class="box box2">
+                <i class="material-symbols-outlined">auto_stories</i>
+                <span class="text">Total Course</span>
+                <span class="number">{{ total_courses }}</span>
+            </div>
+            <div class="box box3">
+                <span class="icon-[mdi--teacher]"></span>
+                <i class="uil uil-graduation-cap"></i>
+                <span class="text">Total Tutors</span>
+                <span class="number">{{ total_superusers }}</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="activity">
+        <div class="title">
+            <i class="uil uil-clock-three"></i>
+            <span class="text">Recent Activity</span>
+        </div>
+        <div class="activity-data">
+            <div class="data names">
+                <span class="data-title">Username</span>
+                <ul class="data-list">
+                    {% for user in users %}
+                        <li>{{ user.username }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+            <div class="data email">
+                <span class="data-title">Email</span>
+                <ul class="data-list">
+                    {% for user in users %}
+                        <li>{{ user.email }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+            <div class="data joined">
+                <span class="data-title">Joined</span>
+                <ul class="data-list">
+                    {% for user in users %}
+                        <li>{{ user.date_joined|date:"Y-m-d" }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+            <div class="data status">
+                <span class="data-title">Status</span>
+                <ul class="data-list">
+                    {% for user in users %}
+                        <li>
+                            {% if not user.is_superuser %}
+                                Students
+                            {% endif %}
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+
+        
+</body>
+</html>

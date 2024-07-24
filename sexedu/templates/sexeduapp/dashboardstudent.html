@@ -1,0 +1,100 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>User Dashboard</title>
+  <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+  <link rel="stylesheet" href="{% static 'css/dashboardclass1.css' %}" />
+</head>
+<body>
+  <aside class="sidebar">
+    <div class="sidebar-header">
+      <img src="{% static 'images/logo 2 1.png' %}" alt="logo" />
+      <h2>Sexedu</h2>
+    </div>
+    <ul class="sidebar-links">
+      <h4>
+        <span>Main Menu</span>
+        <div class="menu-separator"></div>
+      </h4>
+      <li>
+        <a href="{% url 'sexeduapp:dashboardstudent' %}">
+          <span class="material-symbols-outlined"> dashboard </span>Dashboard
+        </a>
+      </li>
+      <li>
+        <a href="{% url 'sexeduapp:dashboardcourse'  %}"><span class="material-symbols-outlined"> School </span>My Course</a>
+      </li>
+      <h4>
+        <span>Account</span>
+        <div class="menu-separator"></div>
+      </h4>
+      <li>
+        <a href="{% url 'sexeduapp:profile' %}"><span class="material-symbols-outlined"> account_circle </span>Profile</a>
+      </li>
+      <li>
+        <a href="{% url 'sexeduapp:index' %}"><span class="material-symbols-outlined"> logout </span>Back</a>
+      </li>
+    </ul>
+    <div class="user-account">
+      <div class="user-profile">
+        {% if user.profile.image %}
+        <img src="{{ user.profile.image.url }}" alt="Profile Image">
+        {% else %}
+        <img src="{% static 'images/user1.png' %}" alt="Profile Image">
+        {% endif %}
+        <div class="user-detail">
+          <h3>{{ user.username }}</h3>
+          <span>Student</span>
+        </div>
+      </div>
+    </div>
+  </aside>
+
+  <div class="dash-content">
+    <div class="overview">
+      <div class="title">
+        <i class="uil uil-tachometer-fast-alt"></i>
+        <span class="text">Dashboard Siswa</span>
+      </div>
+      <div class="boxes">
+        <div class="box box1">
+          <i class="material-symbols-outlined">groups</i>
+          <span class="text">Total Students</span>
+          <span class="number">{{ total_users }} </span>
+        </div>
+        <div class="box box2">
+          <i class="material-symbols-outlined">auto_stories</i>
+          <span class="text">Your Course</span>
+          <span class="number">{{ user.courses.count }}</span>
+        </div>
+        <div class="box box3">
+          <i class="uil uil-graduation-cap"></i>
+          <span class="text">Total Tutors</span>
+          <span class="number">{{ total_superusers }}</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="courses-container">
+      <h3>Kelas Anda</h3>
+      {% for course in user.courses.all %}
+      <div class="course">
+        <div class="course-preview">
+          <h6>Kelas Anda</h6>
+          <p>{{ user.courses.count }}</p>
+        </div>
+        <div class="course-info">
+          <h2>{{ course.name }}</h2>
+          <a href="{% url 'sexeduapp:dashboardcourse'  %}" class="btn">Lihat Kelas</a>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+
+</body>
+</html>

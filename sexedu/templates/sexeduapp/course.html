@@ -1,0 +1,372 @@
+ <!-- Halaman Kelas -->
+ <!DOCTYPE html>
+
+ {% extends 'sexeduapp/base.html' %}
+ {% load static %}
+ 
+ {% block costum_css %}
+ <link rel="stylesheet" href="{% static 'css/kelas.css' %}">
+ {% endblock %}
+
+
+ {% block body_block%}
+ 
+       <!-- Kelas -->
+       <div class="class">
+         <!-- header -->
+         <div class="class-header">
+             <h2>Cari Kursus dan lainnya</h2>
+         </div>
+         <!-- Drop down Sorting button -->
+         <div class="sorting-by dropdown d-flex justify-content-end">
+             <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                 Urutkan Berdasarkan
+             </button>
+             <ul class="dropdown-menu">
+                 <li><a class="dropdown-item" href="#">Rekomendasi</a></li>
+                 <li><a class="dropdown-item" href="#">Terbaru</a></li>
+                 
+             </ul>
+         </div>
+        
+         <div class="class-container">
+            <!-- Left Class Filter--> 
+             <div class="class-filter-left">
+               <!-- Search -->
+               <div class="container-fluid">
+                 <form class="d-flex" role="search">
+                   <input class="form-control me-2" id="myInput" type="search" placeholder="Search" aria-label="Search">
+                 </form>
+               </div>
+                 <div class="filter-header">
+                     <p>Filter</p>
+                     <a href="#">Reset</a>
+                 </div>
+                 <!-- Licensce -->
+                 <div class="filter-categories">
+                   <p>lisensi</p>
+                   <div class="form-check">
+                     <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                     <label class="form-check-label" for="flexCheckDefault">
+                       Free 
+                     </label>
+                   </div>
+                   <div class="form-check">
+                     <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                     <label class="form-check-label" for="flexCheckDefault">
+                       Paid 
+                     </label>
+                   </div>
+                 </div>
+                 <!-- Class category -->
+                 <div class="filter-categories">
+                   <p>Kategori Kelas</p>
+                   <div class="form-check">
+                     <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                     <label class="form-check-label" for="flexCheckDefault">
+                       Umum
+                     </label>
+                   </div>
+                   <div class="form-check">
+                     <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                     <label class="form-check-label" for="flexCheckDefault">
+                        Paling direkomendasikan
+                     </label>
+                   </div>
+                   <div class="form-check">
+                     <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                     <label class="form-check-label" for="flexCheckDefault">
+                       Guru Teratas
+                     </label>
+                   </div>
+                 </div>
+                 <!-- Class Level -->
+                 <div class="filter-categories">
+                   <p>Level Kelas</p>
+                   <div class="form-check">
+                     <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                     <label class="form-check-label" for="flexCheckDefault">
+                       Anak
+                     </label>
+                   </div>
+                   <div class="form-check">
+                     <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                     <label class="form-check-label" for="flexCheckDefault">
+                        Remaja
+                     </label>
+                   </div>
+                   <div class="form-check">
+                     <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                     <label class="form-check-label" for="flexCheckDefault">
+                       Dewasa
+                     </label>
+                   </div>
+                   <div class="form-check">
+                     <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                     <label class="form-check-label" for="flexCheckDefault">
+                       Semua Level
+                     </label>
+                   </div>
+                 </div>
+                 <!-- Rating -->
+                 <div class="filter-categories">
+                   <p>Penilaian</p>
+                   <div class="form-check">
+                     <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                     <label class="form-check-label" for="flexCheckDefault">
+                       Bintang 5
+                     </label>
+                   </div>
+                   <div class="form-check">
+                     <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                     <label class="form-check-label" for="flexCheckDefault">
+                        Bintang 4 ke atas
+                     </label>
+                   </div>
+                   <div class="form-check">
+                     <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                     <label class="form-check-label" for="flexCheckDefault">
+                       Bintang 3 ke atas
+                     </label>
+                   </div>
+                   <div class="form-check">
+                     <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                     <label class="form-check-label" for="flexCheckDefault">
+                       Bintang 2 ke atas
+                     </label>
+                   </div>
+                   <div class="form-check">
+                     <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                     <label class="form-check-label" for="flexCheckDefault">
+                       Bintang 1 ke atas
+                     </label>
+                   </div>
+                 </div>
+                 <!-- Durasi -->
+                 <div class="filter-categories">
+                   <p>Durasi</p>
+                   <div class="form-check">
+                     <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                     <label class="form-check-label" for="flexCheckDefault">
+                       Kurang dari 2 jam
+                     </label>
+                   </div>
+                   <div class="form-check">
+                     <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                     <label class="form-check-label" for="flexCheckDefault">
+                        1-4 minggu
+                     </label>
+                   </div>
+                   <div class="form-check">
+                     <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                     <label class="form-check-label" for="flexCheckDefault">
+                       1-3 bulan
+                     </label>
+                   </div>
+                 </div>
+             </div>
+             <!-- Right Class Course -->
+             <div class="class-courses-right"> 
+               <div class="class-courses-header">
+                 <h3>Pilih Kursus Gratis yang Paling Sesuai dengan Tujuan Pendidikan Anda</h3>
+               </div>
+               <!-- list 1 -->
+               <div class="card-course-list">
+                <a href="{% url 'sexeduapp:class_content' %}" style="text-decoration: none;">
+                   <div class="card col-lg-3 mb-4"> 
+                       <div class="card-contain"> 
+                         <img src="{% static 'images/image 1.png' %}" alt="course1" class="card-img-top">
+                         <div class="card-body">
+                           <h5 class="card-title">Seksualitas Sehat: Pemahaman Dasar</h5>
+                           <p class="card-text">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ut eum similique repellat a laborum!</p>
+                           <hr/>
+                           <div class="row">
+                             <div class="col"> 
+                               <p>Anak</p>
+                             </div>
+                             <div class="col">
+                               <p class="time text-end">3h 50m 2s</p>
+                             </div>
+                           </div>
+                         </div>
+                       </div>  
+                   </div>
+                 </a>
+                   <div class="card col-lg-3 mb-4"> 
+                       <div class="card-contain"> 
+                         <img src="{% static 'images/image 2.png' %}" alt="course2" class="card-img-top">
+                         <div class="card-body">
+                           <h5 class="card-title">Etika Seksual dan Tanggung Jawab</h5>
+                           <p class="card-text">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ut eum similique repellat a laborum!</p>  
+                           <hr/>
+                           <div class="row">
+                             <div class="col"> 
+                               <p>Anak</p>
+                             </div>
+                             <div class="col">
+                               <p class="time text-end">3h 50m 2s</p>
+                             </div>
+                           </div>
+                         </div>
+                       </div>  
+                   </div>
+                   <div class="card col-lg-3 mb-4"> 
+                       <div class="card-contain"> 
+                         <img src="{% static 'images/image 3.png' %}" alt="course3" class="card-img-top">
+                         <div class="card-body">
+                           <h5 class="card-title">Kesehatan Reproduksi dan Kontrasepsi</h5>
+                           <p class="card-text">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ut eum similique repellat a laborum!</p>
+                           <hr/>
+                           <div class="row">
+                             <div class="col"> 
+                               <p>Anak</p>
+                             </div>
+                             <div class="col">
+                               <p class="time text-end">3h 50m 2s</p>
+                             </div>
+                           </div>
+                         </div>
+                       </div>  
+                   </div>
+               </div>
+               <!-- list 2 -->
+               <div class="card-course-list">
+                   <div class="card col-lg-3 mb-4"> 
+                       <div class="card-contain"> 
+                         <img src="{% static 'images/image 4.png' %}" alt="course4" class="card-img-top">
+                         <div class="card-body">
+                           <h5 class="card-title">Seksualitas dan Perubahan Fisik</h5>
+                           <p class="card-text">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ut eum similique repellat a laborum!</p>
+                           <hr/>
+                           <div class="row">
+                             <div class="col"> 
+                               <p>Anak</p>
+                             </div>
+                             <div class="col">
+                               <p class="time text-end">3h 50m 2s</p>
+                             </div>
+                           </div>
+                         </div>
+                       </div>  
+                   </div>
+                   <!-- List 3 -->
+                   <div class="card col-lg-3 mb-4"> 
+                       <div class="card-contain"> 
+                         <img src="{% static 'images/image 5.png' %}" alt="course5" class="card-img-top">
+                         <div class="card-body">
+                           <h5 class="card-title">Komunikasi Pasangan dan Keterampilan Seksual</h5>
+                           <p class="card-text">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ut eum similique repellat a laborum!</p>
+                           <hr/>
+                           <div class="row">
+                             <div class="col"> 
+                               <p>Anak</p>
+                             </div>
+                             <div class="col">
+                               <p class="time text-end">3h 50m 2s</p>
+                             </div>
+                           </div>
+                         </div>
+                       </div>  
+                   </div>
+                   <div class="card col-lg-3 mb-4"> 
+                       <div class="card-contain"> 
+                         <img src="{% static 'images/image 6.png' %}" alt="course6" class="card-img-top">
+                         <div class="card-body">
+                           <h5 class="card-title">Seksualitas dan Disfungsi Seksual</h5>
+                           <p class="card-text">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ut eum similique repellat a laborum!</p>   
+                           <hr/>
+                           <div class="row">
+                             <div class="col"> 
+                               <p>Anak</p>
+                             </div>
+                             <div class="col">
+                               <p class="time text-end">3h 50m 2s</p>
+                             </div>
+                           </div>
+                         </div>
+                       </div>  
+                   </div>
+               </div>
+               <!-- list 3 -->
+               <div class="card-course-list">
+                   <div class="card col-lg-3 mb-4"> 
+                       <div class="card-contain"> 
+                         <img src="{% static 'images/image 7.png' %}" alt="course7" class="card-img-top">
+                         <div class="card-body">
+                           <h5 class="card-title">Seksualitas dan Kesehatan Psikologis</h5>
+                           <p class="card-text">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ut eum similique repellat a laborum!</p>
+                           <hr/>
+                           <div class="row">
+                             <div class="col"> 
+                               <p>Anak</p>
+                             </div>
+                             <div class="col">
+                               <p class="time text-end">3h 50m 2s</p>
+                             </div>
+                           </div>
+                         </div>
+                       </div>  
+                   </div>
+                   <div class="card col-lg-3 mb-4"> 
+                       <div class="card-contain"> 
+                         <img src="{% static 'images/image 8.png' %}" alt="course8" class="card-img-top">
+                         <div class="card-body">
+                           <h5 class="card-title">Seksualitas dan Pendidikan Anak</h5>
+                           <p class="card-text">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ut eum similique repellat a laborum!</p>
+                           <hr/>
+                           <div class="row">
+                             <div class="col"> 
+                               <p>Anak</p>
+                             </div>
+                             <div class="col">
+                               <p class="time text-end">3h 50m 2s</p>
+                             </div>
+                           </div>
+                         </div>
+                       </div>  
+                   </div>
+                   <div class="card col-lg-3 mb-4"> 
+                       <div class="card-contain"> 
+                         <img src="{% static 'images/image 1.png' %}" alt="course9" class="card-img-top">
+                         <div class="card-body">
+                           <h5 class="card-title">Seksualitas dan Keterlibatan Sosial</h5>
+                           <p class="card-text">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ut eum similique repellat a laborum!</p>
+                           <hr/>
+                           <div class="row">
+                             <div class="col"> 
+                               <p>Anak</p>
+                             </div>
+                             <div class="col">
+                               <p class="time text-end">3h 50m 2s</p>
+                             </div>
+                           </div>
+                         </div>
+                       </div>  
+                   </div>
+               </div>
+               <!-- Pagination -->
+               <div class="pagination-course col-6 col-sm-3 ">
+                 <div class="content-pagination align-self-center">
+                   <ul class="listPage">
+                   </ul>
+                 </div>
+               </div>
+         </div>
+       </div>
+     </div>
+    
+     {% block costum_js %}
+     <script src="{% static 'js/kelas-pagination.js' %}"></script>
+    <script>
+       $(document).ready(function(){
+         $("#myInput").on("keyup", function() {
+           var value = $(this).val().toLowerCase();
+           $(".card").filter(function() {
+             $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+           });
+         });
+       });
+    </script>  
+
+    {% endblock %}
+    {% endblock%}

@@ -1,0 +1,84 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Course</title>
+  <!-- Linking Google Font Link For Icons -->
+  <link rel="stylesheet"href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <link rel="stylesheet" href="{% static 'css/admincourse.css' %}" />
+
+</head>
+<body>
+    <aside class="sidebar">
+    <div class="sidebar-header">
+        <img src="{% static 'images/logo 2 1.png' %}" alt="logo" />
+        <h2>Sexedu</h2>
+    </div>
+    <ul class="sidebar-links">
+        <h4>
+        <span>Main Menu</span>
+        <div class="menu-separator"></div>
+        </h4>
+        <li>
+        <a href="{% url 'dashboardadmin' %}">
+        <span class="material-symbols-outlined"> dashboard </span>Dashboard</a>
+        </li>
+        <li>
+        <a href="{% url 'admincourse' %}"><span class="material-symbols-outlined">edit_square</span>Kelola Course</a>
+        </li>
+        <h4>
+        <span>Account</span>
+        <div class="menu-separator"></div>
+        </h4>
+        <li>
+        <a href="{% url 'sexeduapp:profile' %}"><span class="material-symbols-outlined"> account_circle </span>Profile</a>
+        </li>
+        <li>
+        <a href="{% url 'sexeduapp:index' %}"><span class="material-symbols-outlined"> logout </span>Back</a>
+        </li>
+    </ul>
+    <div class="user-account">
+        <div class="user-profile">
+        {% if user.profile.image %}
+        <img src="{{ user.profile.image.url }}" alt="Profile Image" >
+        {% else %}
+        <img src="{% static 'images/user1.png' %}" alt="Profile Image">
+        {% endif %}
+        <div class="user-detail">
+          <h3>{{ user.username }}</h3>
+          {% if user.is_superuser %}
+                    Admin
+                {% else %}
+                    Student
+                {% endif %}
+        </div>
+      </div>
+    </div>
+  </aside>
+
+  <div class="container">
+    <header>
+        <h1>Kelola Course</h1>
+    </header>
+    <div class="class-list">
+        <h2>Daftar Course</h2>
+        <hr>
+        {% for course in courses %}
+        <div class="class-item">
+            <div class="class-info">
+                <img src="{% static 'images/education.png' %}" alt="Class Icon">
+                <div>
+                    <h3>{{ course.name }}</h3>
+                </div>
+            </div>
+            <a href="{% url 'editcourse' course.id %}" class="sync-button">Edit</a>
+        </div>
+        <hr>
+        {% endfor %}
+    </div>
+</div>
+
+</body>
+</html>

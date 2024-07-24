@@ -1,0 +1,27 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Report Succes</title>
+    <link rel="stylesheet" href="{% static 'css/pesanberhasil.css' %}" />
+</head>
+<body>
+    <div class="container">
+        <div class="left">
+            <header>
+                <img src="{% static 'images/logo 2 1.png' %}" alt="SexEdu Online Course Logo" class="logo">
+            </header>
+            <div class="image-container">
+                <div class="circle"></div>
+                <img src="{% static 'images/women.png' %}" alt="Woman with Headset" class="woman-image">
+            </div>
+        </div>
+        <div class="right">
+            <p>Pesan Berhasil dikirim!</p>
+            <small>Kembali Ke Halaman Report ? <a href="{% url 'sexeduapp:report' %}">Kembali</a></small>
+        </div>
+    </div>
+</body>
+</html>

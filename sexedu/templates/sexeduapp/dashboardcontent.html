@@ -1,0 +1,86 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Content</title>
+    <link rel="stylesheet" href="{% static 'css/dashboardcontent.css' %}">
+    <link rel="stylesheet"href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
+</head>
+<body>
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <img src="{% static 'images/logo 2 1.png' %}" alt="logo" />
+            <h2>Sexedu</h2>
+        </div>
+        <ul class="sidebar-links">
+            <h4>
+            <span>Main Menu</span>
+            <div class="menu-separator"></div>
+            </h4>
+            <li>
+            <a href="{% url 'sexeduapp:dashboardstudent' %}">
+            <span class="material-symbols-outlined"> dashboard </span>Dashboard</a>
+            </li>
+            <li>
+                <a href="{% url 'sexeduapp:dashboardcourse'  %}"><span class="material-symbols-outlined"> School </span>My Course</a>
+            </li>
+            <h4>
+            <span>Account</span>
+            <div class="menu-separator"></div>
+            </h4>
+            <li>
+            <a href="{% url 'sexeduapp:profile' %}"><span class="material-symbols-outlined"> account_circle </span>Profile</a>
+            </li>
+            <li>
+            <a href="{% url 'sexeduapp:index' %}"><span class="material-symbols-outlined"> logout </span>Back</a>
+            </li>
+        </ul>
+        <div class="user-account">
+            <div class="user-profile">
+            {% if user.profile.image %}
+            <img src="{{ user.profile.image.url }}" alt="Profile Image" >
+            {% else %}
+            <img src="{% static 'images/user1.png' %}" alt="Profile Image">
+            {% endif %}
+            <div class="user-detail">
+            <h3>{{ user.username }}</h3>
+            {% if user.is_superuser %}
+                        Admin
+                    {% else %}
+                        Student
+                    {% endif %}
+            </div>
+        </div>
+        </div>
+    </aside>
+
+    <div class="container">
+        <div class="course-item">
+            <div class="text-start">
+                <h2>{{ course.name }}</h2>
+            </div>
+            <div class="course-video">
+                {% if course.video %}
+                <video controls>
+                    <source src="{{ course.video.url }}" type="video/mp4">
+                </video>
+                {% endif %}
+            </div>
+            <div class="course-description">
+                <h3>Deskripsi</h3>
+                <p>{{ course.description }}</p>
+            </div>
+            {% if course.ppt %}
+            <div class="course-material">
+                <h3>Materi</h3>
+                <a href="{{ course.ppt.url }}" download>Download PPT</a>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+    
+</body>
+</html>

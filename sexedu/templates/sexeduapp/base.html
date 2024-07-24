@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+    <link rel="stylesheet" href="{% static 'css/navbar.css' %}">
+    <!-- CSS kustom -->
+    {% block costum_css %}
+    {% endblock %}
+    <title>SexEdu</title>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg bg-body-tertiary fixed-top">
+        <div class="container-fluid">
+            <img class="navbar-brand me-auto" src="{% static 'images/logo 2 1.png' %}" alt="logo">
+            <div class="offcanvas offcanvas-end" tabberanda="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+                <div class="offcanvas-header">
+                    <img class="offcanvas-title" id="offcanvasNavbarLabel" src="{% static 'images/logo 2 1.png' %}" alt="logo">
+                    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                </div>
+                <div class="offcanvas-body">
+                    <ul class="navbar-nav justify-content-center flex-grow-1 pe-3">
+                        <li class="nav-item">
+                            <a class="nav-link {% if request.path == '/' %} active {% endif %}" href="{% url 'index'%}">Beranda</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link {% if request.path == '/course/' %}active{% endif %}" href="{% url 'sexeduapp:course' %}">Kelas</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link {% if request.path == '/report/' %}active{% endif %}" href="{% url 'sexeduapp:report' %}">Laporkan</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link {% if request.path == '/about/' %}active{% endif %}" href="{% url 'sexeduapp:about' %}">Tentang Kami</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            {% if user.is_authenticated %}
+            <div class="profile">
+              <div class="profile-img" onclick="menuToggle();"> 
+                {% if user.profile.image %}
+                <img src="{{ user.profile.image.url }}" alt="Profile Picture" class="profile-image">
+            {% else %}
+                <img src="{% static 'images/user1.png' %}" alt="Profile Picture" class="profile-image">
+            {% endif %}
+              </div>
+              <div class="menu">
+                <h3>{{ user.username }} <br><span>Youth Zone</span></h3>
+                <ul>
+                  <li><img src="{% static 'images/user.png' %}" alt=""><a href="{%url 'sexeduapp:profile' %}">Profile</a></li>
+                  <li>
+                    <img src="{% static 'images/envelope.png' %}" alt="">
+                    {% if user.is_superuser %}
+                        <a href="{% url 'dashboardadmin' %}">Dashboard</a>
+                    {% else %}
+                        <a href="{% url 'sexeduapp:dashboardstudent' %}">Dashboard</a>
+                    {% endif %}
+                </li>
+                  <li><img src="{% static 'images/log-out.png' %}" alt=""><a href="{% url 'logout' %}">Logout</a></li>
+                </ul>
+              </div>
+            </div>
+            {% else %}
+              <a class="login-button" href="{% url 'sexeduapp:loginpage' %}"
+                >Mulai</a>
+            {% endif %}
+            <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+        </div>
+    </nav>
+    
+    <!-- End Navbar -->
+
+    
+    {% block body_block %}
+    {% endblock %}
+    
+    <footer>
+      <img src=" {% static 'images/logo 2 1.png' %}" alt="logo">
+      <div class="box-footer">
+        <div class="top-footer">
+        
+          <div class="content-footer">
+            <div class="banner-footer">
+              <h2>Bangun Kesadaran Seksual yang Sehat Bersama <br>Kami  Menuju Pendidikan Seks yang Empower!</h2>
+            <p>SexEdu, 2024.</p>
+            </div>
+            <div class="company">
+              <p><b>Company</b></p>
+              <p>Blog</p>
+              <p>Careers</p>
+              <p>Pricing</p>
+            </div>
+            <div class="resources">
+              <p><b>Documentation</b></p>
+              <p>Papers</p>
+              <p>Press Conferences</p>
+            </div>
+            <div class="legal">
+              <p><b>Terms of Service</b></p>
+              <p>Privacy Policy</p>
+              <p>Cookies Policy</p>
+              <p>Data Processing</p>
+            </div>
+          </div>
+        </div>
+        <hr> 
+        <div class="bottom-footer">
+        <p>© 2024 SexEdu Inc. All rights reserved.</p>
+        <div class="icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path opacity="0.4" d="M16.19 2H7.81C4.17 2 2 4.17 2 7.81V16.18C2 19.83 4.17 22 7.81 22H16.18C19.82 22 21.99 19.83 21.99 16.19V7.81C22 4.17 19.83 2 16.19 2Z" fill="white" fill-opacity="0.8"/>
+            <path d="M12.0001 15.8801C14.143 15.8801 15.8801 14.143 15.8801 12.0001C15.8801 9.85725 14.143 8.12012 12.0001 8.12012C9.85725 8.12012 8.12012 9.85725 8.12012 12.0001C8.12012 14.143 9.85725 15.8801 12.0001 15.8801Z" fill="white" fill-opacity="0.8"/>
+            <path d="M17 7.4999C16.73 7.4999 16.48 7.3999 16.29 7.2099C16.2 7.1099 16.13 6.9999 16.08 6.8799C16.03 6.7599 16 6.6299 16 6.4999C16 6.3699 16.03 6.2399 16.08 6.1199C16.13 5.9899 16.2 5.8899 16.29 5.7899C16.52 5.5599 16.87 5.4499 17.19 5.5199C17.26 5.5299 17.32 5.5499 17.38 5.5799C17.44 5.5999 17.5 5.6299 17.56 5.6699C17.61 5.6999 17.66 5.7499 17.71 5.7899C17.8 5.8899 17.87 5.9899 17.92 6.1199C17.97 6.2399 18 6.3699 18 6.4999C18 6.6299 17.97 6.7599 17.92 6.8799C17.87 6.9999 17.8 7.1099 17.71 7.2099C17.61 7.2999 17.5 7.3699 17.38 7.4199C17.26 7.4699 17.13 7.4999 17 7.4999Z" fill="white" fill-opacity="0.8"/>
+          </svg>
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path opacity="0.4" d="M16.19 2H7.82001C4.18001 2 2.01001 4.17 2.01001 7.81V16.18C2.01001 19.82 4.18001 21.99 7.82001 21.99H16.19C19.83 21.99 22 19.82 22 16.18V7.81C22 4.17 19.83 2 16.19 2Z" fill="white" fill-opacity="0.8"/>
+              <path d="M13.92 9.2802L13.97 12.2302L16.6 12.1902C16.79 12.1902 16.93 12.3602 16.9 12.5402L16.55 14.4502C16.52 14.5902 16.4 14.6902 16.26 14.7002L14.01 14.7402L14.13 21.9902L11.13 22.0402L11.01 14.7902L9.30997 14.8202C9.13997 14.8202 9.00998 14.6902 9.00998 14.5202L8.97998 12.6202C8.97998 12.4502 9.10997 12.3202 9.27997 12.3202L10.98 12.2902L10.93 9.0402C10.9 7.3802 12.22 6.0202 13.88 5.9902L16.58 5.9502C16.75 5.9502 16.88 6.0802 16.88 6.2502L16.92 8.6502C16.92 8.8202 16.79 8.9502 16.62 8.9502L14.22 8.9902C14.05 8.9802 13.92 9.1202 13.92 9.2802Z" fill="white" fill-opacity="0.8"/>
+          </svg>
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path opacity="0.4" d="M17 20H7C4 20 2 18 2 15V9C2 6 4 4 7 4H17C20 4 22 6 22 9V15C22 18 20 20 17 20Z" fill="white" fill-opacity="0.8"/>
+                <path d="M11.4201 9.49009L13.8901 10.9701C14.8301 11.5401 14.8301 12.4601 13.8901 13.0301L11.4201 14.5101C10.4201 15.1101 9.6001 14.6501 9.6001 13.4801V10.5101C9.6001 9.3501 10.4201 8.89009 11.4201 9.49009Z" fill="white" fill-opacity="0.8"/>
+          </svg>
+        </div>
+                            
+        </div>
+      </div>
+  </footer>
+    
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+    <script>
+      function menuToggle(){
+        const toggleMenu = document.querySelector('.menu');
+        toggleMenu.classList.toggle('active')
+      }
+    </script>
+    {% block costum_js %}
+    {% endblock %}
+</body>
+</html>

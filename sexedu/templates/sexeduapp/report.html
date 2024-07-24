@@ -1,0 +1,55 @@
+<!-- REPORT -->
+<!DOCTYPE html>
+{% extends 'sexeduapp/base.html' %}
+{% load static %}
+
+{% block costum_css %}
+<link rel="stylesheet" href="{% static 'css/report.css' %}">
+
+
+{% endblock %}
+
+{% block body_block%}
+ <!-- Form -->
+
+ <div class="container">
+  <div class="row">
+    <div class="col">
+      <!-- Left Box -->
+      <h1 style="font-weight: bold;">Ada yang bisa kami bantu?</h1>
+      <p>Terima kasih sebelumnya telah menghubungi kami. Bagaimana kami membantumu?</p>
+      <form method="POST" action="{% url 'sexeduapp:report_view' %}" autocomplete="on">
+        {% csrf_token %}
+        <div class="col-lg-4 mb-4">
+            <label for="exampleInputNama" class="form-label">Nama</label>
+            <input type="text" name="nama" class="form-control custom-input" id="exampleInputNama" aria-describedby="emailHelp" placeholder="Enter Name" autocomplete="name">
+        </div>
+        <div class="col-lg-4 mb-4">
+            <label for="exampleInputEmail" class="form-label">Alamat Email</label>
+            <input type="email" name="email" class="form-control custom-input" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="saya010102@gmail.com" autocomplete="email">
+        </div>
+        <label for="floatingTextarea2" class="mb-2">Deskripsi Laporan</label>
+        <div class="form-floating">
+            <div class="report">
+                <textarea class="form-control custom-textarea" name="deskripsi" placeholder="Tulis Pesan Kamu.." id="floatingTextarea2" autocomplete="description"></textarea>
+            </div>
+        </div>
+        <button type="submit" class="btn btn-danger">Laporkan</button>
+    </form>
+    
+    
+    </div>
+    <!-- Right Box -->
+    <div class="col-auto">
+      <img src="{% static 'images/report.svg' %}" class="rounded float-end" alt="model">
+    </div>
+  </div>
+</div>
+
+<!-- End Form -->
+{% block costum_js %}
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+{% endblock %}
+
+
+{% endblock%}

@@ -1,0 +1,280 @@
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap");
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: "Open Sans", sans-serif;
+}
+
+li, a, button {
+  font-family: "Open Sans", sans-serif;
+  font-weight: 500;
+  font-size: 16px;
+  color: black;
+  text-decoration: none;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 30px 10%;
+}
+
+.logo {
+  cursor: pointer;
+}
+
+.nav_link {
+  list-style: none;
+}
+
+.nav_link li {
+  display: inline-block;
+  padding: 0px 20px;
+}
+
+.nav_link li a:hover {
+  color: blueviolet;
+}
+
+button {
+  padding: 9px 25px;
+  background-color: blueviolet;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+}
+
+#hero {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto 400px;
+  text-align: left;
+  position: relative;
+  background: linear-gradient(#7f27ff, #ffc700);
+  color: white;
+}
+
+#hero h1 {
+  margin: 0;
+  padding: 100px;
+  font-size: 100px;
+}
+
+#hero p {
+  margin: 0;
+  font-size: 30px;
+  grid-row: 2;
+}
+
+#hero img {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  max-width: 600px;
+  max-height: 600px;
+}
+
+#our-company {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background-color: #ecdfff;
+}
+
+.container-contact {
+  background-image: url(../../static/images/bg_Contact.jpg);
+}
+
+#our-company h1 {
+  text-align: center;
+  margin: 20px;
+}
+
+#company {
+  width: 80%;
+  max-width: 1000px;
+  height: 400px;
+  padding: 35px;
+  margin: 2 auto;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 20px;
+  background-color: #f0f0f0;
+  backdrop-filter: blur(15px);
+  text-align: center;
+  font-size: large;
+  margin-bottom: 50px;
+}
+
+#company img {
+  max-width: 100%;
+  display: block;
+  margin: auto auto 50px;
+}
+
+#company p {
+  margin-bottom: 20px;
+  text-align: justify;
+}
+
+.card-container {
+  display: flex;
+  justify-content: center;
+}
+
+.card {
+  flex: 1;
+  width: 20%;
+  padding: 20px;
+  margin: 20px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 40px;
+  background-color: #ffc700;
+  text-align: center;
+}
+
+.card h1 {
+  margin-bottom: 10px;
+  color: #f0f0f0;
+}
+
+.card p {
+  margin-bottom: 20px;
+  text-align: justify;
+}
+
+#our-team {
+  text-align: center;
+  margin: 50px;
+}
+
+.team-members {
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+}
+
+.team-group {
+  display: flex;
+  justify-content: center;
+  gap: 50px;
+}
+
+.team-member {
+  text-align: center;
+}
+
+.team-member img {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.team-member p {
+  margin-top: 10px;
+  font-weight: bold;
+}
+
+#our-team {
+  cursor: pointer;
+}
+
+/* Contact us */
+section.ourteam button {
+  font-size: 18px;
+  font-weight: 400;
+  color: #fff;
+  padding: 14px 22px;
+  border: none;
+  background-color: #7F27FF;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+section.ourteam button:hover {
+  background-color: #C075AD;
+}
+
+.modal-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 380px;
+  width: 100%;
+  padding: 30px 20px;
+  border-radius: 24px;
+  background: linear-gradient(#61379d, #fa46f6);
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.3s ease;
+  transform: translate(-50%, -50%) scale(1.2);
+}
+
+section.active .modal-box {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translate(-50%, -50%) scale(1);
+}
+
+.modal-box .buttons {
+  margin-top: 25px;
+}
+
+.modal-box button {
+  font-size: 14px;
+  padding: 6px 12px;
+  margin: 0 10px;
+}
+
+.form-group label {
+  color: white;
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.form-group input, .form-group textarea {
+  display: flex;
+  width: 280px;
+}
+
+#contact-us h1 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: blueviolet;
+}
+
+#contact-us {
+  margin-top: 30px;
+  background-color: #ecdfff00;
+  background-size: cover;
+  background-position: center;
+  color: #fff;
+  padding: 50px 0;
+}
+
+.form-group {
+  margin: 20px;
+}
+
+.container-contact {
+  background-image: url(../images/bg_Contact.jpg);
+  background-size: 50cm;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+  display: grid;
+  font-size: 14px;
+}
